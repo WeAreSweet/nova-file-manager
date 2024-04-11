@@ -77,6 +77,7 @@ interface State {
   pinturaOptions?: PinturaOptions
   cropperOptions?: CropperOptions
   component?: string
+  newlyAddedFiles: File[]
 }
 
 const useBrowserStore = defineStore('nova-file-manager/browser', {
@@ -149,6 +150,9 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     usePintura: false,
     pinturaOptions: {},
     cropperOptions: {},
+
+    // WAS edits
+    newlyAddedFiles: []
   }),
 
   actions: {
@@ -617,6 +621,8 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
           id: file.fileName,
           status: true,
         })
+
+        this.newlyAddedFiles.push(file);
       })
 
       uploader.on('fileProgress', file => {
@@ -722,12 +728,12 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
         let editMode
 
         switch (this.component) {
-        case 'Nova.Create':
-          editMode = 'create'
-          break
-        case 'Nova.Update':
-          editMode = 'update'
-          break
+          case 'Nova.Create':
+            editMode = 'create'
+            break
+          case 'Nova.Update':
+            editMode = 'update'
+            break
         }
 
         data = {
@@ -775,22 +781,22 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     },
 
     openBrowser({
-      initialFiles,
-      multiple,
-      limit,
-      wrapper,
-      resource,
-      resourceId,
-      attribute,
-      singleDisk,
-      permissions,
-      flexibleGroup,
-      callback,
-      usePintura,
-      pinturaOptions,
-      cropperOptions,
-      component,
-    }: BrowserConfig) {
+                  initialFiles,
+                  multiple,
+                  limit,
+                  wrapper,
+                  resource,
+                  resourceId,
+                  attribute,
+                  singleDisk,
+                  permissions,
+                  flexibleGroup,
+                  callback,
+                  usePintura,
+                  pinturaOptions,
+                  cropperOptions,
+                  component,
+                }: BrowserConfig) {
       this.isField = true
       this.multiple = multiple
       this.limit = limit

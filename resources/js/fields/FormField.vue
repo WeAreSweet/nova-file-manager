@@ -52,6 +52,30 @@ export default defineComponent({
   mounted() {
     this.init()
 
+    const findAndSelectFile = (newlyAddedFile, state) => {
+      const file = state.files.find(file => file.name === newlyAddedFile.fileName);
+
+      if(file) {
+        // select the new file
+        try {
+          state.selection = state.selection === null ? [file] : [...state.selection, file];
+        } catch (e) {
+          state.selection = [file]
+        }
+
+        // remove newlyAddedFile from newlyAddedFiles
+        state.newlyAddedFiles = state.newlyAddedFiles.filter(f => f.fileName !== newlyAddedFile.fileName);
+      }
+    }
+
+    useBrowserStore().$subscribe((mutation, state) =>{
+      if(state.newlyAddedFiles.length) {
+        state.newlyAddedFiles.map(newlyAddedFile => {
+          findAndSelectFile(newlyAddedFile, state)
+        })
+      }
+    });
+
     this.value = !(this.currentField.value === undefined || this.currentField.value === null)
       ? this.currentField.value
       : this.value
