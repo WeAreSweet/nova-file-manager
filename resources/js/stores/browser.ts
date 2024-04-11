@@ -771,6 +771,9 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
         }
       }
 
+      data.viaResource = 'members'
+      data.viaResourceId = 46;
+
       return data
     },
 
@@ -796,6 +799,8 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
                   pinturaOptions,
                   cropperOptions,
                   component,
+                  viaResource,
+                  viaResourceId
                 }: BrowserConfig) {
       this.isField = true
       this.multiple = multiple
@@ -814,6 +819,8 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       this.permissions = permissions
       this.disk = undefined
       this.component = component
+      this.viaResource = viaResource
+      this.viaResourceId = viaResourceId
 
       this.openModal({ name: BROWSER_MODAL_NAME })
       this.setSelection({ files: [...initialFiles] })

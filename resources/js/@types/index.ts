@@ -29,6 +29,8 @@ export type BrowserConfig = {
   pinturaOptions?: PinturaOptions
   cropperOptions?: CropperOptions
   component?: string
+  viaResource?: string
+  viaResourceId?: string
 }
 
 export type Config = {
