@@ -771,8 +771,8 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
         }
       }
 
-      data.viaResource = 'members'
-      data.viaResourceId = 46;
+      data.viaResource = this.viaResource
+      data.viaResourceId = this.viaResourceId
 
       return data
     },

@@ -1,3 +1,13 @@
+# WAS Fork
+This is a fork of the original package.
+To build, run:
+
+`docker run -it -v /path/to/local/package:/src -w /src node:21 npm run build`
+
+Then, push to the `dev-fork` branch.
+
+---
+
 <img src="./docs/images/banner.png"/>
 
 <a href="https://oneduo.github.io/nova-file-manager/" taget="_blank"><img src="./docs/images/documentation.png"/></a>
